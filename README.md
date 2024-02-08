@@ -37,7 +37,7 @@ tp PrivateMessage.all
 tp Recipient.all
 
 
-Le Faker pour générer un gossip avec un User : 
+Le Faker pour générer 10 Users : 
 
 10.times do
   User.create(
@@ -48,6 +48,28 @@ Le Faker pour générer un gossip avec un User :
     age: rand(18..70)
   )
 end
+
+
+Le Faker pour générer 20 Gossips : 
+
+20.times do
+
+user = User.all.sample
+gossip = user.gossips.create(
+    title: Faker::Lorem.sentence,
+    content: Faker::Lorem.paragraph
+  )
+puts "Gossip créé : #{gossip.title} par #{user.first_name} #{user.last_name}"
+end
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
 
 
