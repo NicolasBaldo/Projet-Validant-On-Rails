@@ -11,6 +11,19 @@ require 'faker'
   )
 end
 
+
+10.times do
+  City.create(
+    name: Faker::Address.unique.city,
+    zip_code: Faker::Address.zip_code
+  )
+end
+User.all.each do |user|
+ city = City.all.sample
+ user.update(city_id: city.id)
+end
+
+
 20.times do
 
 user = User.all.sample

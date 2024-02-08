@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_08_150056) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_08_160241) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "zip_code"
@@ -58,10 +58,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_150056) do
     t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "city_id"
+    t.index ["city_id"], name: "index_users_on_city_id"
   end
 
   add_foreign_key "gossips", "users"
   add_foreign_key "private_messages", "senders"
   add_foreign_key "recipients", "private_messages"
   add_foreign_key "recipients", "users"
+  add_foreign_key "users", "cities"
 end

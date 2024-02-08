@@ -36,6 +36,7 @@ tp Tag.all
 tp PrivateMessage.all
 tp Recipient.all
 
+--------------------------------------
 
 Le Faker pour générer 10 Users : 
 
@@ -49,6 +50,22 @@ Le Faker pour générer 10 Users :
   )
 end
 
+-------------------------------------
+
+Le Faker pour générer 10 Villes : 
+
+10.times do
+  City.create(
+    name: Faker::Address.unique.city,
+    zip_code: Faker::Address.zip_code
+  )
+end
+User.all.each do |user|
+ city = City.all.sample
+ user.update(city_id: city.id)
+end
+
+------------------------------------
 
 Le Faker pour générer 20 Gossips : 
 
